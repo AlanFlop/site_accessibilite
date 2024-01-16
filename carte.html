@@ -1,0 +1,104 @@
+<!DOCTYPE HTML5>
+<html lang="fr">
+  <head>
+    <title>Accessibilité</title>
+    <link rel="stylesheet" href="css/carte.css" />
+    <meta charset="utf-8" />
+  </head>
+
+  <body>
+    <div class="description">
+      <div class="Ville">
+        <p class="titre">Paris - Voyagez vers la capitale</p>
+        <div class="gallery">
+          <img src="images/paris_2.png" alt="a wolf" />
+          <img src="images/paris.jpeg" alt="a lioness" />
+        </div>
+        <p class="text_ville_1">
+          Bienvenue dans la ville lumière, la capitale de la mode, de la culture
+          et du romantisme - Paris. Chez Alan Industry, nous vous invitons à
+          plonger dans l'essence même de cette métropole exceptionnelle, où
+          l'histoire rencontre la modernité et l'élégance se mêle à la passion .
+        </p>
+
+        <p class="text_ville_2">
+          Paris, la ville lumière, vous attend avec ses rues pavées, ses
+          monuments emblématiques et son ambiance romantique. Des Champs-Élysées
+          à la Tour Eiffel, chaque coin de Paris respire l'histoire et
+          l'élégance. Découvrez les musées renommés tels que le Louvre, dégustez
+          une délicieuse pâtisserie dans une charmante brasserie parisienne.
+        </p>
+
+        <p class="text_ville_3">
+          Chez Alan Industry, nous comprenons l'importance de chaque voyage.
+          C'est pourquoi nous mettons tout en œuvre pour rendre votre expérience
+          de réservation aussi agréable que votre séjour à Paris. Notre équipe
+          dévouée vous garantit des vols confortables, des tarifs compétitifs et
+          un service personnalisé tout au long de votre voyage.
+        </p>
+        <button id="reserverVolBtn">
+          <span>Réserver un vol</span>
+        </button>
+      </div>
+    </div>
+
+    <script>
+      function scrollToSection(sectionId) {
+        var section = document.getElementById(sectionId);
+        if (section) {
+          var offsetTop = section.offsetTop;
+          var startPosition = window.pageYOffset;
+          var distance = offsetTop - startPosition;
+          var duration = 500; // milliseconds
+
+          var startTime;
+          function animate(currentTime) {
+            if (!startTime) startTime = currentTime;
+            var timeElapsed = currentTime - startTime;
+            var nextPosition = easeInOutQuad(
+              timeElapsed,
+              startPosition,
+              distance,
+              duration
+            );
+            window.scrollTo(0, nextPosition);
+            if (timeElapsed < duration) {
+              requestAnimationFrame(animate);
+            }
+          }
+
+          function easeInOutQuad(t, b, c, d) {
+            t /= d / 2;
+            if (t < 1) return (c / 2) * t * t + b;
+            t--;
+            return (-c / 2) * (t * (t - 2) - 1) + b;
+          }
+
+          requestAnimationFrame(animate);
+        }
+      }
+
+      document
+        .getElementById("reserverVolBtn")
+        .addEventListener("click", function () {
+          // Obtenez ou initialisez le panier depuis le stockage local
+          var panier = JSON.parse(localStorage.getItem("panier")) || [];
+
+          // Ajoutez ici le code pour ajouter des éléments au panier
+          // Exemple : panier.push({ vol: 'nomDuVol', prix: 100.00 });
+
+          // Sauvegardez le panier dans le stockage local
+          localStorage.setItem("panier", JSON.stringify(panier));
+
+          // Redirigez l'utilisateur vers la page du panier
+          window.location.href = "panier.html";
+        });
+
+      function scrollToSection(sectionId) {
+        // Le reste de votre fonction scrollToSection reste inchangé
+        // ...
+      }
+    </script>
+  </body>
+  <footer></footer>
+</html>
