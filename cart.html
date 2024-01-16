@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panier</title>
+  </head>
+  <body></body>
+
+  <script>
+    function afficherContenuPanier() {
+      // Récupérez le panier depuis le stockage local
+      var panier = JSON.parse(localStorage.getItem("panier")) || [];
+
+      // Obtenez l'élément DOM où vous voulez afficher le contenu du panier
+      var panierContent = document.getElementById("panierContent");
+
+      // Effacez le contenu actuel du panier
+      panierContent.innerHTML = "";
+
+      // Ajoutez chaque élément du panier à la page
+      panier.forEach(function (element) {
+        var itemElement = document.createElement("p");
+        itemElement.textContent =
+          "Vol: " + element.vol + ", Prix: " + element.prix;
+        panierContent.appendChild(itemElement);
+      });
+    }
+  </script>
+</html>
