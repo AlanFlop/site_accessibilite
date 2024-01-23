@@ -10,7 +10,7 @@
 
 nav {
   padding: 0;
-  padding-top: 7px;
+  padding-top: 10px;
   position: relative;
   font-size: 2rem;
   font-weight: bold;
@@ -109,6 +109,19 @@ button:hover span:after {
   right: 0;
 }
 
-#prixTotal {
+.reservationDetails {
   z-index: 1;
+  position: absolute;
+  left: 40px;
+  bottom: 600px;
+  height: 70px;
+  width: 58%;
+  border: 2px solid black;
+  border-radius: 4px;
+}
+
+.prixTotal {
+  position: absolute;
+  left: 88%;
+  bottom: 10px;
 }

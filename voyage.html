@@ -2,15 +2,16 @@
 <html lang="fr">
   <head>
     <title>Accessibilité</title>
-    <link rel="stylesheet" href="css/carte.css" />
+    <link rel="stylesheet" href="css/voyage.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
     <meta charset="utf-8" />
   </head>
 
-  <body class="body-padding">
+  <body class="body">
     <nav class="navbar">
         <a href="account.html">Mon compte</a>
         <a class="mainpage">Voyages</a>
-        <a href="panier.html">Panier</a>
+        <a href="cart.html">Panier</a>
       </nav>
     <section class="Choix_utilisateur">
         <p class="prout">Partez dans des destinations à couper le souffle dans tout l'univers</p>
@@ -1399,7 +1400,7 @@ Chez Alan Industry, nous vous offrons une expérience exceptionnelle d'explorati
 </div>
 </section>
 
-    <script>
+<script>
       function ouvrirPageReservation(destination, prix) {
         // Vous pouvez stocker les détails du vol dans le stockage local ici, par exemple :
         var volSelectionne = {
@@ -1410,7 +1411,7 @@ Chez Alan Industry, nous vous offrons une expérience exceptionnelle d'explorati
         localStorage.setItem("volSelectionne", JSON.stringify(volSelectionne));
 
         // Redirigez l'utilisateur vers la page de réservation
-        window.location.href = "panier.html";
+        window.location.href = "reservation.html";
       }
 
 
@@ -1428,7 +1429,7 @@ Chez Alan Industry, nous vous offrons une expérience exceptionnelle d'explorati
     });
   });
 </script>
-    </script>
-  </body>
-  <footer></footer>
+
+</body>
+<footer></footer>
 </html>
