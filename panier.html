@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="css/cart.css" rel="stylesheet" />
+    <title>Panier</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="account.html">Mon compte</a>
+      <a href="carte.html">Voyages</a>
+      <a class="mainpage">Panier 🛒<i class="fa-solid fa-cart-shopping"></i></a>
+    </nav>
+
+    <h1 class="panier">Récapitulatif de votre panier</h1>
+    <section class="resume"></section>
+    <aside class="tarification"></aside>
+  </body>
+
+  <div id="reservationDetails">
+    <!-- Les détails de la réservation seront affichés ici -->
+  </div>
+
+  <label for="nombreBillets">Nombre de billets:</label>
+  <select id="nombreBillets" onchange="calculerPrix()">
+    <!-- Options du menu pour le nombre de billets -->
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <!-- Ajoutez autant d'options que nécessaire -->
+  </select>
+
+  <p id="prixTotal">Prix total:</p>
+
+  <button onclick="ajouterAuPanier()">Valider le panier</button>
+
+  <script>
+    function afficherContenuPanier() {
+      // Récupérez le panier depuis le stockage local
+      var panier = JSON.parse(localStorage.getItem("panier")) || [];
+
+      // Obtenez l'élément DOM où vous voulez afficher le contenu du panier
+      var panierContent = document.getElementById("panierContent");
+
+      // Effacez le contenu actuel du panier
+      panierContent.innerHTML = "";
+
+      // Ajoutez chaque élément du panier à la page
+      panier.forEach(function (element) {
+        var itemElement = document.createElement("p");
+        itemElement.textContent =
+          "Vol: " + element.vol + ", Prix: " + element.prix;
+        panierContent.appendChild(itemElement);
+      });
+    }
+
+    // Récupérez le vol sélectionné depuis le stockage local
+    var volSelectionne =
+      JSON.parse(localStorage.getItem("volSelectionne")) || {};
+
+    // Obtenez l'élément DOM où vous voulez afficher les détails de la réservation
+    var reservationDetails = document.getElementById("reservationDetails");
+
+    // Ajoutez les détails du vol à la page
+    var detailsElement = document.createElement("p");
+    detailsElement.textContent =
+      "Destination: " +
+      volSelectionne.destination +
+      ", Prix par billet: " +
+      volSelectionne.prix;
+    reservationDetails.appendChild(detailsElement);
+
+    // Fonction pour calculer le prix total en fonction du nombre de billets choisi
+    function calculerPrix() {
+      var nombreBillets = parseInt(
+        document.getElementById("nombreBillets").value
+      );
+      var prixTotalElement = document.getElementById("prixTotal");
+      var prixTotal = nombreBillets * volSelectionne.prix;
+      prixTotalElement.textContent = "Prix total: " + prixTotal + " euros";
+    }
+
+    // Fonction pour ajouter la réservation au panier
+    function ajouterAuPanier() {
+      var panier = JSON.parse(localStorage.getItem("panier")) || [];
+      var nombreBillets = parseInt(
+        document.getElementById("nombreBillets").value
+      );
+      var prixTotal = nombreBillets * volSelectionne.prix;
+
+      // Ajoutez les détails de la réservation au panier
+      panier.push({
+        destination: volSelectionne.destination,
+        prix: prixTotal,
+        nombreBillets: nombreBillets,
+      });
+
+      // Sauvegardez le panier dans le stockage local
+      localStorage.setItem("panier", JSON.stringify(panier));
+
+      // Redirigez l'utilisateur vers la page du panier
+      window.location.href = "cart.html";
+    }
+  </script>
+</html>
