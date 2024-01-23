@@ -3,36 +3,6 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
-
-.navback {
-  color: #0d48a5;
-}
-
-nav {
-  padding: 0;
-  padding-top: 10px;
-  position: relative;
-  font-size: 2rem;
-  font-weight: bold;
-  color: #0d48a5;
-}
-
-nav a {
-  color: rgb(255, 255, 255);
-  margin: 0 2rem;
-  text-decoration: none;
-}
-
-.navbar {
-  background-color: #0d48a5;
-  height: 50px;
-  width: 100%;
-  display: block;
-  text-align: center;
-  text-decoration: none;
-  font-size: 25px;
-}
-
 .panier {
   padding-top: 20px;
   text-align: center;
@@ -50,17 +20,26 @@ nav a {
   box-shadow: 3px 3px 3px black;
 }
 
-.tarification {
-  z-index: 1;
+aside {
   position: absolute;
   height: 350px;
   width: 30%;
   background-color: grey;
-  opacity: 0.3;
   display: inline-block;
   right: 20px;
   top: 126px;
   box-shadow: 3px 3px 3px black;
+  padding: 10px;
+}
+.tarification {
+  height: auto;
+  position: absolute;
+  left: 32%;
+  font-size: 3vh;
+  text-align: center;
+  border-radius: 5px;
+  border: 2px solid black;
+  width: 40%;
 }
 
 button {
@@ -118,10 +97,28 @@ button:hover span:after {
   width: 58%;
   border: 2px solid black;
   border-radius: 4px;
+  font-size: 2.1vh;
+}
+.quantite {
+  position: relative;
+  left: 50%;
+  top: 10%;
 }
 
+.reservationDetails p {
+  position: absolute;
+  top: 0;
+}
 .prixTotal {
   position: absolute;
-  left: 88%;
-  bottom: 10px;
+  left: 85%;
+  bottom: 0;
+}
+
+#destinationElement.destination {
+  top: 10%;
+}
+
+#prixTotalElement.prixTotal {
+  top: 40px;
 }

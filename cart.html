@@ -4,102 +4,99 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="css/cart.css" rel="stylesheet" />
+    <link href="css/navbar.css" rel="stylesheet" />
     <title>Panier</title>
   </head>
   <body>
     <nav class="navbar">
       <a href="account.html">Mon compte</a>
-      <a href="carte.html">Voyages</a>
+      <a href="voyage.html">Voyages</a>
       <a class="mainpage">Panier</a>
     </nav>
 
     <h1 class="panier">Récapitulatif de votre panier</h1>
     <section class="resume"></section>
-    <aside class="tarification"></aside>
+    <aside>
+      <div class="tarification"></div>
+    </aside>
+
+    <div class="reservationDetails" id="reservationDetails">
+      <p id="destinationElement" class="destination"></p>
+      <label class="quantite" for="nombreBillets">Quantité:</label>
+      <select class="quantite" id="nombreBillets" onchange="calculerPrix()">
+        <!-- Options du menu pour le nombre de billets -->
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">3</option>
+      </select>
+      <!-- Ajoutez l'élément pour afficher le prix total -->
+      <p id="prixTotalElement" class="prixTotal"></p>
+    </div>
+    <button onclick="ajouterAuPanier()">Valider le panier</button>
+
+    <script>
+      // Récupérez le vol sélectionné depuis le stockage local
+      var volSelectionne =
+        JSON.parse(localStorage.getItem("volSelectionne")) || {};
+
+      // Obtenez l'élément DOM où vous voulez afficher les détails de la réservation
+      var destinationElement = document.getElementById("destinationElement");
+      var prixTotalElement = document.getElementById("prixTotalElement");
+
+      // Ajoutez les détails du vol à la page
+      destinationElement.textContent =
+        "✈️ Destination: " + volSelectionne.destination;
+
+      // Appelez la fonction pour calculer le prix total par défaut
+      calculerPrix();
+
+      // Fonction pour calculer le prix total en fonction du nombre de billets choisi
+      function calculerPrix() {
+        var nombreBillets = parseInt(
+          document.getElementById("nombreBillets").value
+        );
+        var prixTotal = nombreBillets * volSelectionne.prix;
+        prixTotalElement.textContent = "Total: " + prixTotal + "€";
+
+        // Calcul du détail des prix dans le aside
+        var tarificationElement = document.querySelector(".tarification");
+        var sousTotal = nombreBillets * volSelectionne.prix;
+        var tva = 0.2 * sousTotal;
+        var charge = 30;
+
+        // Affichage du détail des prix
+        tarificationElement.innerHTML = `
+          <p>${nombreBillets} billet(s) : ${sousTotal}€</p>
+          <p>20% TVA : ${tva}€</p>
+          <p>Charge : ${charge}€</p>
+          <hr>
+          <p>Sous-total : ${sousTotal + tva + charge}€</p>
+        `;
+      }
+
+      // Fonction pour ajouter la réservation au panier
+      function ajouterAuPanier() {
+        var panier = JSON.parse(localStorage.getItem("panier")) || [];
+        var nombreBillets = parseInt(
+          document.getElementById("nombreBillets").value
+        );
+        var prixTotal = nombreBillets * volSelectionne.prix;
+
+        // Ajoutez les détails de la réservation au panier
+        panier.push({
+          destination: volSelectionne.destination,
+          prix: prixTotal,
+          nombreBillets: nombreBillets,
+        });
+
+        // Sauvegardez le panier dans le stockage local
+        localStorage.setItem("panier", JSON.stringify(panier));
+
+        // Redirigez l'utilisateur vers la page du panier
+        window.location.href = "cart.html";
+      }
+    </script>
   </body>
-
-  <div class="reservationDetails" id="reservationDetails">
-    <label for="nombreBillets">Nombre de billets:</label>
-    <select id="nombreBillets" onchange="calculerPrix()">
-      <!-- Options du menu pour le nombre de billets -->
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <!-- Ajoutez autant d'options que nécessaire -->
-    </select>
-
-    <p class="prixTotal">Total:</p>
-  </div>
-
-  <button onclick="ajouterAuPanier()">Valider le panier</button>
-
-  <script>
-    function afficherContenuPanier() {
-      // Récupérez le panier depuis le stockage local
-      var panier = JSON.parse(localStorage.getItem("panier")) || [];
-
-      // Obtenez l'élément DOM où vous voulez afficher le contenu du panier
-      var panierContent = document.getElementById("panierContent");
-
-      // Effacez le contenu actuel du panier
-      panierContent.innerHTML = "";
-
-      // Ajoutez chaque élément du panier à la page
-      panier.forEach(function (element) {
-        var itemElement = document.createElement("p");
-        itemElement.textContent =
-          "Vol: " + element.vol + ", Prix: " + element.prix;
-        panierContent.appendChild(itemElement);
-      });
-    }
-
-    // Récupérez le vol sélectionné depuis le stockage local
-    var volSelectionne =
-      JSON.parse(localStorage.getItem("volSelectionne")) || {};
-
-    // Obtenez l'élément DOM où vous voulez afficher les détails de la réservation
-    var reservationDetails = document.getElementById("reservationDetails");
-
-    // Ajoutez les détails du vol à la page
-    var detailsElement = document.createElement("p");
-    detailsElement.textContent =
-      "✈️ Destination: " +
-      volSelectionne.destination +
-      ", Prix par billet: " +
-      volSelectionne.prix;
-    reservationDetails.appendChild(detailsElement);
-
-    // Fonction pour calculer le prix total en fonction du nombre de billets choisi
-    function calculerPrix() {
-      var nombreBillets = parseInt(
-        document.getElementById("nombreBillets").value
-      );
-      var prixTotalElement = document.getElementById("prixTotal");
-      var prixTotal = nombreBillets * volSelectionne.prix;
-      prixTotalElement.textContent = "Total: " + prixTotal + " euros";
-    }
-
-    // Fonction pour ajouter la réservation au panier
-    function ajouterAuPanier() {
-      var panier = JSON.parse(localStorage.getItem("panier")) || [];
-      var nombreBillets = parseInt(
-        document.getElementById("nombreBillets").value
-      );
-      var prixTotal = nombreBillets * volSelectionne.prix;
-
-      // Ajoutez les détails de la réservation au panier
-      panier.push({
-        destination: volSelectionne.destination,
-        prix: prixTotal,
-        nombreBillets: nombreBillets,
-      });
-
-      // Sauvegardez le panier dans le stockage local
-      localStorage.setItem("panier", JSON.stringify(panier));
-
-      // Redirigez l'utilisateur vers la page du panier
-      window.location.href = "cart.html";
-    }
-  </script>
 </html>

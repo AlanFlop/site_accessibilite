@@ -1402,16 +1402,7 @@ Chez Alan Industry, nous vous offrons une expérience exceptionnelle d'explorati
 
 <script>
       function ouvrirPageReservation(destination, prix) {
-        // Vous pouvez stocker les détails du vol dans le stockage local ici, par exemple :
-        var volSelectionne = {
-          destination: destination,
-          prix: prix,
-          // Ajoutez d'autres détails si nécessaire
-        };
-        localStorage.setItem("volSelectionne", JSON.stringify(volSelectionne));
-
-        // Redirigez l'utilisateur vers la page de réservation
-        window.location.href = "reservation.html";
+        window.location.href = "cart.html";
       }
 
 
@@ -1419,10 +1410,9 @@ Chez Alan Industry, nous vous offrons une expérience exceptionnelle d'explorati
 
       document.querySelectorAll('.pays').forEach(image => {
     image.addEventListener('click', () => {
-      // Get the target section's id from the alt attribute of the clicked image
+
       const targetId = image.alt;
 
-      // Use smooth scrolling to scroll to the target section
       document.getElementById(targetId).scrollIntoView({
         behavior: 'smooth'
       });
