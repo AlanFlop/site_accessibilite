@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
@@ -7,19 +7,19 @@
   </head>
   <body>
     <div id="reservationDetails">
-      <!-- Les détails de la réservation seront affichés ici -->
+
     </div>
 
     <label for="nombreBillets">Nombre de billets:</label>
     <select id="nombreBillets" onchange="calculerPrix()">
-      <!-- Options du menu pour le nombre de billets -->
+
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
-      <!-- Ajoutez autant d'options que nécessaire -->
+
     </select>
 
-    <p id="prixTotal">Prix total:</p>
+    <p id="prixTotal">Prix total: 0.00 euros</p>
 
     <button onclick="ajouterAuPanier()">Ajouter au panier</button>
 
@@ -32,13 +32,19 @@
       var reservationDetails = document.getElementById("reservationDetails");
 
       // Ajoutez les détails du vol à la page
-      var detailsElement = document.createElement("p");
-      detailsElement.textContent =
-        "Destination: " +
-        volSelectionne.destination +
-        ", Prix par billet: " +
-        volSelectionne.prix;
-      reservationDetails.appendChild(detailsElement);
+      if (volSelectionne && volSelectionne.destination && volSelectionne.prix) {
+        var detailsElement = document.createElement("p");
+        detailsElement.textContent =
+          "Destination: " +
+          volSelectionne.destination +
+          ", Prix par billet: " +
+          volSelectionne.prix +
+          " euros";
+        reservationDetails.appendChild(detailsElement);
+      } else {
+        console.error("Les détails du vol sont manquants ou incorrects.");
+        // Ajoutez ici une logique pour rediriger l'utilisateur ou gérer l'absence de données
+      }
 
       // Fonction pour calculer le prix total en fonction du nombre de billets choisi
       function calculerPrix() {
@@ -47,11 +53,22 @@
         );
         var prixTotalElement = document.getElementById("prixTotal");
         var prixTotal = nombreBillets * volSelectionne.prix;
-        prixTotalElement.textContent = "Prix total: " + prixTotal + " euros";
+        prixTotalElement.textContent =
+          "Prix total: " + prixTotal.toFixed(2) + " euros";
       }
 
       // Fonction pour ajouter la réservation au panier
       function ajouterAuPanier() {
+        if (
+          !volSelectionne ||
+          !volSelectionne.destination ||
+          !volSelectionne.prix
+        ) {
+          console.error("Les détails du vol sont manquants ou incorrects.");
+          // Ajoutez ici une logique pour rediriger l'utilisateur ou gérer l'absence de données
+          return;
+        }
+
         var panier = JSON.parse(localStorage.getItem("panier")) || [];
         var nombreBillets = parseInt(
           document.getElementById("nombreBillets").value
@@ -68,9 +85,13 @@
         // Sauvegardez le panier dans le stockage local
         localStorage.setItem("panier", JSON.stringify(panier));
 
+        // Informez l'utilisateur que la réservation a été ajoutée au panier
+        alert("La réservation a été ajoutée au panier.");
+
         // Redirigez l'utilisateur vers la page du panier
         window.location.href = "cart.html";
       }
     </script>
   </body>
 </html>
+ -->

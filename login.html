@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Création de compte / Connexion</title>
+    <link rel="stylesheet" href="css/login.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <p>Bienvenue sur Voyage.com</p>
+    </nav>
+
+    <div class="wrapper">
+      <form class="register" action="login.php" method="post">
+        <h1>Qui êtes-vous?</h1>
+        <div class="input-box">
+          <label for="loginUsername" placeholder="Nom" required
+            ><p class="nom">Nom d'utilisateur:</p></label
+          >
+          <input
+            type="text"
+            id="loginUsername"
+            name="loginUsername"
+            class="input-field"
+            required
+          />
+        </div>
+        <div class="input-box">
+          <label for="loginPassword" placeholder="Mot de passe" required
+            ><p class="nom">Mot de passe:</p></label
+          >
+          <input
+            type="password"
+            id="loginPassword"
+            name="loginPassword"
+            class="input-field"
+            required
+          />
+        </div>
+        <div class="souvenir">
+          <div class="input1-box">
+            <input type="checkbox" class="input-checkbox" id="souvenir" />
+            <label for="souvenir">Se souvenir de moi</label>
+          </div>
+        </div>
+          <button type="submit" class="btn">Valider</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
+

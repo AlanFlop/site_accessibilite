@@ -7,9 +7,9 @@
     <meta charset="utf-8" />
   </head>
 
-  <body class="body">
+  <body>
     <nav class="navbar">
-        <a href="account.html">Mon compte</a>
+        <a href="login.html">Mon compte</a>
         <a class="mainpage">Voyages</a>
         <a href="cart.html">Panier</a>
       </nav>
@@ -1401,24 +1401,34 @@ Chez Alan Industry, nous vous offrons une expérience exceptionnelle d'explorati
 </section>
 
 <script>
-      function ouvrirPageReservation(destination, prix) {
-        window.location.href = "cart.html";
-      }
-
-
-      /* JS QUI DESCEND DE FOU LÀ */
-
-      document.querySelectorAll('.pays').forEach(image => {
-    image.addEventListener('click', () => {
-
-      const targetId = image.alt;
-
-      document.getElementById(targetId).scrollIntoView({
-        behavior: 'smooth'
+    function ouvrirPageReservation(destination, prix) {
+      // Créez un objet pour stocker les détails du vol
+      var volSelectionne = {
+        destination: destination,
+        prix: prix,
+      };
+  
+      // Stockez les détails du vol dans le stockage local
+      localStorage.setItem("volSelectionne", JSON.stringify(volSelectionne));
+  
+      // Redirigez l'utilisateur vers la page de panier
+      window.location.href = "cart.html";
+    }
+  
+    /* JS QUI DESCEND DE FOU LÀ */
+  
+    document.querySelectorAll('.pays').forEach(image => {
+      image.addEventListener('click', () => {
+  
+        const targetId = image.alt;
+  
+        document.getElementById(targetId).scrollIntoView({
+          behavior: 'smooth'
+        });
       });
     });
-  });
-</script>
+  </script>
+  
 
 </body>
 <footer></footer>
