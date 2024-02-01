@@ -4,35 +4,34 @@
   font-family: "Poppins", sans-serif;
 }
 .panier {
-  padding-top: 20px;
+  padding-top: 2%;
+  padding-bottom: 2%;
   text-align: center;
 }
 
 .resume {
   position: absolute;
-  height: 500px;
+  height: 50%;
   width: 60%;
   background-color: #938b8b88;
   opacity: 0.3;
   display: inline-block;
-  left: 20px;
-  top: 126px;
+  left: 1%;
   box-shadow: 3px 3px 3px black;
 }
 
 aside {
   position: absolute;
-  height: 350px;
+  height: 35%;
   width: 30%;
   background-color: grey;
   display: inline-block;
-  right: 20px;
-  top: 126px;
+  right: 1%;
   box-shadow: 3px 3px 3px black;
-  padding: 10px;
+  padding: 1%;
 }
 .tarification {
-  height: auto;
+  height: 72%;
   position: absolute;
   left: 32%;
   font-size: 3vh;
@@ -44,8 +43,8 @@ aside {
 
 button {
   position: absolute;
-  bottom: 350px;
-  right: 150px;
+  bottom: 47%;
+  right: 10%;
   background-color: #0091ff;
   border-radius: 10px;
   border: 4px double #cccccc;
@@ -53,7 +52,7 @@ button {
   text-align: center;
   font-size: 14px;
   padding: 10px;
-  width: 150px;
+  width: 10%;
   transition: all 0.5s;
   cursor: pointer;
   margin: 5px;
@@ -91,9 +90,9 @@ button:hover span:after {
 .reservationDetails {
   z-index: 1;
   position: absolute;
-  left: 40px;
-  bottom: 600px;
-  height: 70px;
+  left: 2%;
+  bottom: 74%;
+  height: 7.5%;
   width: 58%;
   border: 2px solid black;
   border-radius: 4px;
@@ -105,20 +104,11 @@ button:hover span:after {
   top: 10%;
 }
 
-.reservationDetails p {
-  position: absolute;
-  top: 0;
-}
 .prixTotal {
   position: absolute;
   left: 85%;
-  bottom: 0;
-}
-
-#destinationElement.destination {
-  top: 10%;
 }
 
 #prixTotalElement.prixTotal {
-  top: 40px;
+  top: 60%;
 }

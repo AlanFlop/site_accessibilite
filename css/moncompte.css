@@ -1,0 +1,11 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.informations {
+  align-items: center;
+  width: 90%;
+  background-color: #000;
+}

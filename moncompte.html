@@ -1,9 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML5>
+<html lang="fr">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mon compte</title>
+    <title>Accessibilité</title>
+    <link rel="stylesheet" href="css/voyage.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
+    <meta charset="utf-8" />
   </head>
-  <body></body>
+  <body>
+    <nav class="navbar">
+      <a class="mainpage">Mon compte</a>
+      <a href="voyage.html">Voyages</a>
+      <a href="cart.html">Panier</a>
+    </nav>
+
+    <section class="informations">
+      <h1>Vos données</h1>
+      <div id="userData"></div>
+    </section>
+
+    <script>
+      function loadUserData() {
+        var userDataContainer = document.getElementById("userData");
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "php/get_user_information.php", true);
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            var userData = JSON.parse(xhr.responseText);
+
+            userDataContainer.innerHTML = `
+                        Pseudo: ${userData.username} <br>
+                        Prénom: ${userData.firstName} <br>
+                        Nom: ${userData.lastName} <br>
+                        Téléphone: ********${userData.phoneNumber.slice(
+                          -2
+                        )} <br>
+                        Adresse: ${userData.address} <br>
+                        Code Postal: ${userData.postalCode} <br>
+                    `;
+          }
+        };
+
+        xhr.send();
+      }
+
+      loadUserData();
+    </script>
+  </body>
 </html>

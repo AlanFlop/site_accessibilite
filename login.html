@@ -8,12 +8,14 @@
     <link rel="stylesheet" href="css/navbar.css" />
   </head>
   <body>
+
     <nav class="navbar">
       <p>Bienvenue sur Voyage.com</p>
     </nav>
+    <h1 class="VOYAGE">VOYAGES.COM</h1>
     <section class="inscription">
       <div class="wrapper2">
-        <form class="register" action="register.php" method="post">
+        <form class="register" action="php/register.php" method="post">
           <h1>Créer un compte</h1>
           <div class="input-box">
             <label for="username" placeholder="Nom d'utilisateur" required>
@@ -64,18 +66,6 @@
             />
           </div>
           <div class="input-box">
-            <label for="address" placeholder="Adresse" required>
-              <p class="nom">Adresse:</p>
-            </label>
-            <input
-              type="text"
-              id="address"
-              name="address"
-              class="input-field"
-              required
-            />
-          </div>
-          <div class="input-box">
             <label for="phoneNumber" placeholder="Numéro de téléphone" required>
               <p class="nom">Téléphone:</p>
             </label>
@@ -83,6 +73,18 @@
               type="text"
               id="phoneNumber"
               name="phoneNumber"
+              class="input-field"
+              required
+            />
+          </div>
+          <div class="input-box">
+            <label for="address" placeholder="Adresse" required>
+              <p class="nom">Adresse:</p>
+            </label>
+            <input
+              type="text"
+              id="address"
+              name="address"
               class="input-field"
               required
             />
@@ -107,7 +109,7 @@
 
     <aside>
     <div class="wrapper">
-      <form class="register" action="login.php" method="post">
+      <form class="register" action="php/login.php" method="post">
         <h1>Qui êtes-vous?</h1>
         <div class="input-box">
           <label for="loginUsername" placeholder="Nom" required

@@ -1,10 +1,11 @@
 <?php
+session_start(); // Démarrez la session au début du script
+
 // Connexion à la base de données
 $servername = "localhost";
 $username = "root";
 $password = "root";
 $dbname = "ma_base_de_donnees";
-
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Vérification de la connexion
@@ -25,9 +26,13 @@ if ($result->num_rows > 0) {
 
     // Vérification du mot de passe
     if (password_verify($loginPassword, $row['password'])) {
+        // Stocker l'ID de l'utilisateur dans la session
+        $_SESSION['user_id'] = $row['id'];
+        $_SESSION['loggedin'] = true; // Définir la variable de session
+
         // Redirection vers voyage.html
-        header("Location: voyage.html");
-        exit(); // Assurez-vous d'arrêter l'exécution du script après la redirection
+        header("Location: ../voyage.html");
+        exit();
     } else {
         echo "Mot de passe incorrect.";
     }

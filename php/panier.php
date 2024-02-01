@@ -1,11 +1,9 @@
 <?php
 session_start();
+$_SESSION['loggedin'] = true; // Set the session variable
+$_SESSION['username'] = $loginUsername; // Store additional user information if needed
 
-// Code de connexion à la base de données ici...
 
-// Code de vérification de la connexion ici...
-
-// Récupération des données du formulaire de réservation
 $flightId = $_POST['flightId'];
 $userId = $row['userId']; // Assurez-vous d'avoir l'ID de l'utilisateur connecté
 
