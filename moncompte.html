@@ -2,9 +2,11 @@
 <html lang="fr">
   <head>
     <title>Accessibilité</title>
-    <link rel="stylesheet" href="css/voyage.css" />
+    <link rel="stylesheet" href="css/moncompte.css" />
     <link rel="stylesheet" href="css/navbar.css" />
     <meta charset="utf-8" />
+
+    <style></style>
   </head>
   <body>
     <nav class="navbar">
@@ -13,9 +15,16 @@
       <a href="cart.html">Panier</a>
     </nav>
 
-    <section class="informations">
+    <section class="background">
       <h1>Vos données</h1>
-      <div id="userData"></div>
+      <div class="userData" id="userData">
+        <span class="username"></span>
+        <span class="firstName"></span>
+        <span class="lastName"></span>
+        <span class="phoneNumber"></span>
+        <span class="address"></span>
+        <span class="postalCode"></span>
+      </div>
     </section>
 
     <script>
@@ -30,15 +39,26 @@
             var userData = JSON.parse(xhr.responseText);
 
             userDataContainer.innerHTML = `
-                        Pseudo: ${userData.username} <br>
-                        Prénom: ${userData.firstName} <br>
-                        Nom: ${userData.lastName} <br>
-                        Téléphone: ********${userData.phoneNumber.slice(
-                          -2
-                        )} <br>
-                        Adresse: ${userData.address} <br>
-                        Code Postal: ${userData.postalCode} <br>
-                    `;
+              <span class="username">Pseudo: ${userData.username}</span> <br>
+              <span class="firstName">Prénom: ${userData.firstName}</span> <br>
+              <span class="lastName">Nom: ${userData.lastName}</span> <br>
+              <span class="phoneNumber">Téléphone: ********${userData.phoneNumber.slice(
+                -2
+              )}</span> <br>
+              <span class="address">Adresse: ${userData.address}</span> <br>
+              <span class="postalCode">Code Postal: ${
+                userData.postalCode
+              }</span> <br>
+            `;
+
+            // Ajoutez les classes aux éléments générés
+            userDataContainer
+              .querySelector(".username")
+              .classList.add("styled-username");
+            userDataContainer
+              .querySelector(".firstName")
+              .classList.add("styled-firstName");
+            // Ajoutez les autres classes au besoin
           }
         };
 
